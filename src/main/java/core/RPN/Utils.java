@@ -10,8 +10,11 @@ public class Utils {
 
     public static boolean isWord(String word){
 
-        for(int i = 0; i < operations.length; ++i){
-            if(operations[i].equals(word)){
+        String [] notWords = new String[]{")","(","AND","OR"};
+
+
+        for(int i = 0; i < notWords.length; ++i){
+            if(notWords[i].equals(word)){
                 return false;
             }
         }

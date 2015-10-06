@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * Created by yaroslav on 10/5/15.
  */
-public class Index {
+public class Index implements Comparable<Index> {
 
     private String word;
 
@@ -53,4 +53,7 @@ public class Index {
     }
 
 
+    public int compareTo(Index o) {
+        return word.compareTo(o.word);
+    }
 }

@@ -35,7 +35,7 @@ public class Reader {
 
 
 
-    public void  readFromDirectoryAndCreateIndex(String path) throws IOException {
+    public List<Index> readFromDirectoryAndCreateIndex(String path) throws IOException {
 
         File folder = new File(path);
         File[] listOfFiles = folder.listFiles();
@@ -82,12 +82,9 @@ public class Reader {
         Collections.sort(pairsOfWord);
         log.info("Finish sorting");
 
-        log.debug("Sorted: ",pairsOfWord);
 
         Pair tempPair = pairsOfWord.get(0);
         this.index.add(new Index(tempPair.fileName, tempPair.fileId));
-        log.debug("Pairs words {}", pairsOfWord);
-
 
         for(int i = 1; i < pairsOfWord.size(); ++i){
 
@@ -98,7 +95,6 @@ public class Reader {
                 }
             }else{
                 tempPair = pairsOfWord.get(i);
-                log.debug("Add new pair: {}", tempPair);
                 this.index.add(new Index(pairsOfWord.get(i).fileName, pairsOfWord.get(i).fileId));
             }
         }
@@ -106,9 +102,11 @@ public class Reader {
         long finishTime = System.currentTimeMillis();
 
         log.info("Finish creating index in {} ms", finishTime - startTime);
+        log.info("All words size: {}",pairsOfWord.size());
+        log.debug("Index size: {}", index.size());
 
-        log.debug("Size: {}, index {}", index.size(),index);
 
+        return index;
     }
 
 

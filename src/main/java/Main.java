@@ -1,3 +1,4 @@
+import core.RPN.Finder;
 import reader.Reader;
 
 import java.io.IOException;
@@ -17,7 +18,9 @@ public class Main {
 
         Reader reader = new Reader();
 
-        reader.readFromDirectoryAndCreateIndex(path);
+        Finder finder = new Finder(reader.readFromDirectoryAndCreateIndex(path));
+
+        System.out.println(finder.find("( Harry AND Potter ) OR car"));
 
 
     }
